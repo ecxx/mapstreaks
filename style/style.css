@@ -1,0 +1,28 @@
+@import "primary.css";
+
+body {
+    font-family:'Source Code Pro', 'Courier New', Courier, monospace
+}
+
+#map {
+	height: 30rem;
+}
+
+.f-w {
+	color: #fe4444;
+	font-weight: bold;
+}
+
+.f-c {
+	color: #65fe08;
+	font-weight: bold;
+}
+
+.f-g {
+	color: #ff8c00;
+	font-weight: bold;
+}
+
+.f-b {
+	font-weight: bold;
+}
