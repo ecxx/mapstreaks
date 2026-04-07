@@ -36,7 +36,11 @@ const MapProviders = {
 	"satellite": new MapProvider('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 	}, satellite_palette),
-	"mapless": new MapProvider(null, null, default_palette)
+	"mapless": new MapProvider(null, null, default_palette),
+	"relief": new MapProvider('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
+		attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
+		maxZoom: 13
+	}, default_palette),
 }
 
 function styleCircleMarker(provider, properties) {
@@ -180,18 +184,18 @@ class GameController {
 				this.scores[0]++
 				this.streaks[0]++
 				if (this.streaks[1] < this.streaks[0]) this.streaks[1] = this.streaks[0]
-				return 1
+				return [1, this.#bus]
 			} else {
 				this.scores[1]++
 				this.streaks[0] = 0
-				return 0
+				return [0, this.#bus]
 			}
 		} else if (guess.toUpperCase() == "GG") {
 			this.scores[2]++
 			this.streaks[0] = 0
-			return "gg";
+			return ["gg", this.#bus];
 		}
-		return null
+		return [null, null]
 	}
 
 }
@@ -274,7 +278,7 @@ class UserController {
 		} else {
 			var guess = this.i_guess.value
 			var result = this.controller.resetBus(guess)
-			switch (result) {
+			switch (result[0]) {
 				case null:
 					this.p_info.innerHTML = "Invalid guess, try again:"
 					break;
@@ -282,10 +286,10 @@ class UserController {
 					this.p_info.innerHTML = "You guessed: <span class='f-c'>" + guess + "</span>!"
 					break;
 				case 0:
-					this.p_info.innerHTML = "You guessed: <span class='f-w'>" + guess + "</span> | Correct answer: <span class='f-c'>" + this.controller.bus + "</span>"
+					this.p_info.innerHTML = "You guessed: <span class='f-w'>" + guess + "</span> | Correct answer: <span class='f-c'>" + result[1] + "</span>"
 					break;
 				case "gg":
-					this.p_info.innerHTML = "You guessed: <span class='f-g'>" + guess + "</span> | Correct answer: <span class='f-c'>" + this.controller.bus + "</span>"
+					this.p_info.innerHTML = "You guessed: <span class='f-g'>" + guess + "</span> | Correct answer: <span class='f-c'>" + result[1] + "</span>"
 					break;
 			}
 			if (result != null) {
