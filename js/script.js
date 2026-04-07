@@ -145,6 +145,9 @@ class DataFilter {
 
 class GameController {
 
+	#bus;
+	#busdata;
+
 	constructor(map_id) {
 		const params = new URLSearchParams(window.location.search);
 		this.map_type = params.get("map")
@@ -155,8 +158,8 @@ class GameController {
 		this.provider = new DataProvider()
 		this.map = new Map(map_id, this.display_type)
 		this.map.setProvider(MapProviders[this.map_type])
-		this.bus = ""
-		this.busdata = {}
+		this.#bus = ""
+		this.#busdata = {}
 		this.scores = [0, 0, 0] // +, -, gg
 		this.streaks = [0, 0] // cur, max
 	}
@@ -167,13 +170,13 @@ class GameController {
 	}
 
 	setBus() {
-		[this.bus, this.busdata] = this.filter.getBus()
-		this.map.setData(this.busdata)
+		[this.#bus, this.#busdata] = this.filter.getBus()
+		this.map.setData(this.#busdata)
 	}
 
 	resetBus(guess) {
 		if (this.provider.keys_upper.includes(guess.toUpperCase())) {
-			if (guess.toUpperCase() == this.bus.toUpperCase()) {
+			if (guess.toUpperCase() == this.#bus.toUpperCase()) {
 				this.scores[0]++
 				this.streaks[0]++
 				if (this.streaks[1] < this.streaks[0]) this.streaks[1] = this.streaks[0]
@@ -241,6 +244,16 @@ class UserController {
 			document.getElementById("b_guess").onclick = function() {
 				controller.update()
 			}
+			this.starttime = new Date().getTime()
+			var starttime = this.starttime
+			this.interval = setInterval(function() {
+				var now = new Date().getTime()
+				var timed = now - starttime
+				console.log(starttime)
+				var seconds = Math.floor((timed % (1000 * 60)) / 1000);
+				var minutes = Math.floor((timed % (1000 * 60 * 60)) / (1000 * 60));
+				document.getElementById("timer").innerHTML = minutes.toString().padStart(2,'0') + ":" + seconds.toString().padStart(2,'0')
+			}, 100)
 		}
 	}
 

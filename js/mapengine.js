@@ -21,6 +21,7 @@ var current_streak = 0
 var max_streak = 0
 
 var map;
+var timer;
 
 function reset_feedback() {
 	pctscore = 0
@@ -139,6 +140,23 @@ function resetMap() {
 
 }
 
+
+
+class Timer {
+
+	constructor() {
+		var starttime = new Date().getTime()
+		console.log("hi")
+		var x = setInterval(function() {
+			var now = new Date().getTime()
+			var timed = now - starttime
+			var seconds = Math.floor((timed % (1000 * 60)) / 1000);
+			var minutes = Math.floor((timed % (1000 * 60 * 60)) / (1000 * 60));
+			document.getElementById("timer").innerHTML = minutes.toFixed() + ":" + seconds.toFixed()
+		}, 1000)
+	}
+}
+
 async function loadBusData() {
 
 	start_game_btn = document.getElementById("start_game")
@@ -176,6 +194,8 @@ async function loadBusData() {
 			}
 		});
 		guess_btn.onclick = toggleMap
+		console.log("hi")
+		timer = new Timer()
 
 	}
 }
