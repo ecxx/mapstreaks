@@ -292,7 +292,7 @@ class UserController {
 					this.p_info.innerHTML = "You guessed: <span class='f-g'>" + guess + "</span> | Correct answer: <span class='f-c'>" + result[1] + "</span>"
 					break;
 			}
-			if (result != null) {
+			if (result[0] != null) {
 				this.state = "set"
 				this.updatestats()
 			}
