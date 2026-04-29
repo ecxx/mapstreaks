@@ -26,3 +26,8 @@ body {
 .f-b {
 	font-weight: bold;
 }
+
+#rds_display {
+	height: 30rem;
+	overflow-y: auto;
+}
