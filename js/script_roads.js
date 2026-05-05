@@ -186,7 +186,7 @@ class UserController {
 				var timed = now - starttime
 				console.log(starttime)
 				var seconds = Math.floor((timed % (1000 * 60)) / 1000);
-				var minutes = Math.floor((timed % (1000 * 60 * 60)) / (1000 * 60));
+				var minutes = Math.floor(timed / (1000 * 60));
 				document.getElementById("timer").innerHTML = minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0')
 			}, 100)
 		}
