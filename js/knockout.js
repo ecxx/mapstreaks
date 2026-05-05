@@ -198,10 +198,10 @@ class UserController {
 			var result = this.provider.submit(guess)
 			switch (result) {
 				case Result.INVL:
-					this.p_info.innerHTML = "Invalid guess, try again:"
+					this.p_info.innerHTML = "Invalid guess, try again (road: " + this.provider.croad + ")"
 					break;
 				case Result.DUPE:
-					this.p_info.innerHTML = "Already named <span class='f-b'>" + guess + "</span>, try again:"
+					this.p_info.innerHTML = "Already named <span class='f-b'>" + guess + "</span>, try again (road: " + this.provider.croad + ")"
 					break;
 				case Result.AC:
 					this.p_info.innerHTML = "You named: <span class='f-c'>" + guess + "</span>!"
