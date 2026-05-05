@@ -50,7 +50,7 @@ class DataProvider {
 
 	submit(bus) {
 		if (!(this.keys.includes(bus.toUpperCase()))) return Result.INVL
-		if (this.#svcs[bus] == 1) {
+		if (this.#svcs[bus.toUpperCase()] == 1) {
 			this.scores[2]++
 			return Result.DUPE
 		}
