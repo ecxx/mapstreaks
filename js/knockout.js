@@ -43,7 +43,7 @@ class DataProvider {
 		this.#svcs = this.#data['services']
 		this.#sli = this.#data['services_li']
 		this.services_left = Object.keys(this.#svcs).length
-		this.keys = Object.keys(this.#svcs).map(item => item.toUpperCase())
+		this.keys = Object.keys(this.#svcs)
 		this.scores = [0,0,0]
 		this.streaks = [0,0]
 	}
@@ -55,8 +55,8 @@ class DataProvider {
 			return Result.DUPE
 		}
 		// below this are scored
-		if (this.#roads[this.croad].map(item => item.toUpperCase()).includes(bus.toUpperCase())) {
-			this.#svcs[bus] = 1
+		if (this.#roads[this.croad].includes(bus.toUpperCase())) {
+			this.#svcs[bus.toUpperCase()] = 1
 			this.services_left -= 1
 			this.streaks[0]++
 			this.scores[0]++
