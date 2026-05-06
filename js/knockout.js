@@ -173,7 +173,7 @@ class UserController {
 		document.getElementById(this.p_feedback_id + "_bl").innerHTML = this.provider.services_left
 		document.getElementById(this.p_feedback_id + "_cs").innerHTML = this.provider.streaks[0]
 		document.getElementById(this.p_feedback_id + "_ms").innerHTML = this.provider.streaks[1]
-		if (this.provider.services_left <= 100) {
+		if (this.provider.services_left <= 200) {
 			this.provider.output_rem_buses(this.display)
 		}
 
