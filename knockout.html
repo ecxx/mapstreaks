@@ -56,6 +56,7 @@
 	<div class="container mt-5">
 
 		<p id="timer">00:00</p>
+		<p id="p_version" style="display:none"></p>
 
 		<p id="p_feedback">
 			Session Score:
@@ -70,6 +71,7 @@
 
 		<div id="f_start">
 			<button class="btn btn-primary mb-3" type="submit" id="b_start">start</button>
+			<button class="btn btn-secondary mb-3" type="submit" id="b_rl">load last game</button>
 		</div>
 		<br>
 
@@ -85,6 +87,9 @@
 		<div id="rds_display">
 		</div>
 
+		<p>Your progress is autosaved every minute<br>
+		Last save: <span id="lst">0</span> seconds ago</p>
+
 	</div>
 
 	<div class="modal fade text-center" id="model_display">
@@ -92,7 +97,7 @@
 			<div class="modal-content">
 				<div class="modal-body">
 					<h5>Congratulations!</h5>
-					<p>You completed <span class="f-b f-c">Bus Knockout</span> in <span id="mm-min"></span> minutes and <span id="mm-sec"></span> seconds!</p>
+					<p>You completed <span class="f-b f-c">Bus Knockout</span> in <span id="mm-hr"></span> hours, <span id="mm-min"></span> minutes and <span id="mm-sec"></span> seconds!</p>
 					<h6>Final Statistics:</h6>
 					<p>
 					Correct Guesses: <span id="mm-c"></span><br>
