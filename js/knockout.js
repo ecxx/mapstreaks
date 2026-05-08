@@ -257,7 +257,7 @@ class UserController {
 				var lst = Math.floor((now - lastsave) / 1000);
 				document.getElementById("lst").innerHTML = lst
 				var seconds = Math.floor((timed % (1000 * 60)) / 1000);
-				var minutes = Math.floor(timed / (1000 * 60));
+				var minutes = Math.floor(timed % (1000 * 60 * 60) / (1000 * 60));
 				var hours = Math.floor(timed / (1000 * 60 * 60));
 				if ((now - lastsave) > (60 * 1000)) {
 					controller.provider.savestate()
@@ -294,7 +294,7 @@ class UserController {
 					var lst = Math.floor((now - lastsave) / 1000);
 					document.getElementById("lst").innerHTML = lst
 					var seconds = Math.floor((timed % (1000 * 60)) / 1000);
-					var minutes = Math.floor(timed / (1000 * 60));
+					var minutes = Math.floor(timed % (1000 * 60 * 60) / (1000 * 60));
 					var hours = Math.floor(timed / (1000 * 60 * 60));
 					if ((now - lastsave) > (60 * 1000)) {
 						controller.provider.savestate()
