@@ -85,6 +85,9 @@ class GameController {
 	startGame() {
 		this.run = []
 		this.trun = []
+		for (var bsx of this.provider.keys) {
+			this.provider.LI[bsx] = 0
+		}
 		this.bus = this.provider.keys[Math.floor(Math.random() * this.provider.keys.length)]
 		this.scores[0] = 0
 		this.trun.push(this.bus)
