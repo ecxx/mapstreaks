@@ -47,7 +47,7 @@ const MapProviders = {
 	"outline": new MapProvider('http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &amp; USGS'
 	}, default_palette),
-	"base": new MapProvider('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+	"nolabel": new MapProvider('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 		subdomains: 'abcd',
 		maxZoom: 20
@@ -197,7 +197,7 @@ class Map {
 const map = new Map("map")
 const params = new URLSearchParams(window.location.search);
 map_type = params.get("map")
-if (!Object.keys(MapProviders).includes(this.map_type)) this.map_type = "base"
+if (!Object.keys(MapProviders).includes(this.map_type)) this.map_type = "nolabel"
 map.setProvider(MapProviders[map_type])
 async function mainf() {
 	document.getElementById("p_feedback").style.display = "none"
