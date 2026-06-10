@@ -27,6 +27,17 @@ body {
 	font-weight: bold;
 }
 
+.f-blue {
+	color: #0088ff;
+	font-weight: bold;
+}
+
+.f-red {
+	color: #ff0000;
+	font-weight: bold;
+}
+
+
 #rds_display {
 	height: 30rem;
 	overflow-y: auto;
