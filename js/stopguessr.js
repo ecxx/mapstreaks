@@ -110,6 +110,24 @@ class Map {
 		}
 	}
 
+	onEnterButton = (res) => {
+		if (this.state == "set") {
+			if (this.lastloc == null) return;
+			var d = calculateDistance(this.lastloc, this.#stoploc);
+			this.addAttempt(d);
+			if (d <= 1) document.getElementById("p_info").innerHTML = "You were <span class='f-c'>" + d.toFixed(4) + "</span> km away from " + this.stopid + " " + this.stopname + "!"
+			else if (d <= 5) document.getElementById("p_info").innerHTML = "You were <span class='f-g'>" + d.toFixed(4) + "</span> km away from " + this.stopid + " " + this.stopname + "!"
+			else document.getElementById("p_info").innerHTML = "You were <span class='f-w'>" + d.toFixed(4) + "</span> km away from " + this.stopid + " " + this.stopname + "!"
+			this.map.setView([1.3521, 103.8198], 12);
+			this.answermarker = styleCircleMarker(this.provider, 1, this.#stoploc).addTo(this.map)
+			this.state = "reset"
+		} else {
+			this.setStop();
+			this.map.removeLayer(this.answermarker);
+			this.state = "set"
+		}
+	}
+
 	constructor(divid) {
 		this.map = L.map(divid);
 		this.map.setView([1.3521, 103.8198], 12);
@@ -173,6 +191,7 @@ class Map {
 	startGame() {
 		this.map.on("click", this.onClick);
 		document.addEventListener("keydown", this.onKeyDown);
+		document.getElementById("b_guess").addEventListener("click", this.onEnterButton);
 		this.setStop()
 	}
 
@@ -202,6 +221,7 @@ map.setProvider(MapProviders[map_type])
 async function mainf() {
 	document.getElementById("p_feedback").style.display = "none"
 	document.getElementById("f_start").style.display = "none"
+	document.getElementById("f_guess").style.display = "none"
 	document.getElementById("p_info").style.display = "none"
 	await map.loadData()
 	document.getElementById("p_feedback").style.display = ""
@@ -214,6 +234,7 @@ document.getElementById("b_start").onclick = function() {
 	map.setStop()
 	document.getElementById("f_start").style.display = "none"
 	document.getElementById("p_info").style.display = ""
+	document.getElementById("f_guess").style.display = ""
 }
 
 mainf()
