@@ -41,11 +41,6 @@ class MapProvider {
 }
 
 const MapProviders = {
-	"labels": new MapProvider('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-		subdomains: 'abcd',
-		maxZoom: 20
-	}, default_palette),
 	"outline": new MapProvider('http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &amp; USGS'
 	}, default_palette),
@@ -245,7 +240,7 @@ if (difficulty == "medium") max_difficulty = 2
 if (difficulty == "easy") max_difficulty = 1
 map.setProvider(MapProviders[map_type])
 async function mainf() {
-	
+
 	document.getElementById("p_feedback").style.display = "none"
 	document.getElementById("f_start").style.display = "none"
 	document.getElementById("f_guess").style.display = "none"
