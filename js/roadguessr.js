@@ -245,6 +245,7 @@ if (difficulty == "medium") max_difficulty = 2
 if (difficulty == "easy") max_difficulty = 1
 map.setProvider(MapProviders[map_type])
 async function mainf() {
+	
 	document.getElementById("p_feedback").style.display = "none"
 	document.getElementById("f_start").style.display = "none"
 	document.getElementById("f_guess").style.display = "none"
