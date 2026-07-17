@@ -2,6 +2,12 @@ var data;
 var keys;
 var stopkey;
 
+const params = new URLSearchParams(window.location.search);
+var k = params.get("q")
+
+if (k) document.getElementById("f_s1_ii").value = k
+if (k) document.getElementById("f_g1_ii").value = k
+
 function degToRad(deg) {
 	var rad = (deg * Math.PI) / 180;
 	return rad;
@@ -138,6 +144,10 @@ async function mainf() {
 
 	document.getElementById("ksk").onclick = function() {
 		navigator.clipboard.writeText(stopkey);
+	}
+
+	document.getElementById("kk2").onclick = function() {
+		navigator.clipboard.writeText(window.location.href.split('?')[0] + "?q=" + stopkey);
 	}
 
 }
