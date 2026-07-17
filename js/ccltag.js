@@ -78,6 +78,7 @@ async function mainf() {
 		}
 		document.getElementById("p_info").innerHTML = "Your new stop: " + newstops + " " + data[newstops]['name'] + " (" + data[newstops]['road'] + ")<br>"
 		document.getElementById("p_stopkey").innerHTML = "Your new stop key: " + stops.join(".") + " (auto copied to keyboard)"
+		stopkey = stops.join(".")
 
 		navigator.clipboard.writeText(stops.join("."));
 	}
@@ -114,6 +115,7 @@ async function mainf() {
 		}
 		document.getElementById("p_info").innerHTML = "Your new stop: " + newstops + " " + data[newstops]['name'] + " (" + data[newstops]['road'] + ")<br>"
 		document.getElementById("p_stopkey").innerHTML = "Your new stop key: " + stops.join(".") + " (auto copied to keyboard)"
+		stopkey = stops.join(".")
 
 		navigator.clipboard.writeText(stops.join("."));
 	}
